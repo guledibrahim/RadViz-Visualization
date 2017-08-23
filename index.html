@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>RadViz</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+      <script src="https://rawgit.com/biovisualize/radviz/master/radviz-min.js"></script>
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <script src="https://d3js.org/d3.v3.min.js"></script>
+   </head>
+   <body>
+   <h1 class=text-center>NCD-RisC RadViz Visualisation</h1>
+      <br>
+      <h6 class=text-center>Using RadViz multivariate visualisation technique to showcase three prevelances; diabetes, obesity and raised blood pressure using NCD-RisC data set</h6>
+      <div class="container"></div>
+      <div id="tooltip"></div>
+      <script type="text/javascript"> 
+      var dimensions = ['Prevalence of Diabetes','Prevalence of Raised BP','Prevalence of Obesity'];
+      var radviz = radvizComponent()
+      .config({
+         el: document.querySelector('.container'),
+         colorAccessor: function(d){ return d['Sex']; },
+         dimensions: dimensions,
+         size: 1100,
+         margin: 200,
+         dotRadius: 5,
+         drawLinks: true,
+         useRepulsion: true,
+         tooltipFormatter: function(d){
+                return '<h1>' + d.Country
+                  + '</h1>' +'<br/>'+'<b>'+'Region'+':'+d.Region+'</b>'+'</br>'+'<b>'+'Sex'+'</b>'+' : '+d.Sex+'<br/>'+'<b>'+'Year'+'</b>'+' : '+d.Year+'<br/>'+ 
+                  dimensions.map(function(dB){
+                  return '<b>'+dB + ' : '+'</b>'+ d[dB]; }).join('<br />');
+            }
+      });
+      d3.csv("NCD_RisC.csv",function(error,data){
+        console.log(data);
+        radviz.render(data);
+      });
+
+      </script>
+   </body>
+</html>
