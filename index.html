@@ -20,14 +20,14 @@
          el: document.querySelector('.container'),
          colorAccessor: function(d){ return d['Sex']; },
          dimensions: dimensions,
-         size: 900,
+         size: 700,
          margin: 200,
          dotRadius: 5,
          drawLinks: true,
          useRepulsion: true,
          tooltipFormatter: function(d){
                 return '<h1>' + d.Country
-                  + '</h1>' +'<br/>'+'<b>'+'Region'+':'+d.Region+'</b>'+'</br>'+'<b>'+'Sex'+'</b>'+' : '+d.Sex+'<br/>'+'<b>'+'Year'+'</b>'+' : '+d.Year+'<br/>'+ 
+                  + '</h1>' +'<br/>'+'<b>'+'Region'+'</b>'+' : '+d.Region+'</br>'+'<b>'+'Sex'+'</b>'+' : '+d.Sex+'<br/>'+'<b>'+'Year'+'</b>'+' : '+d.Year+'<br/>'+ 
                   dimensions.map(function(dB){
                   return '<b>'+dB + ' : '+'</b>'+ d[dB]; }).join('<br />');
             }
