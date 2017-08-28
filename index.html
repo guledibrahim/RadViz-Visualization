@@ -22,13 +22,21 @@
          dotRadius: 6,
          drawLinks: false,
          useRepulsion: true,
+         zoomFactor: 2, 
          tooltipFormatter: function(d){
                 return '<h1>' + d.Country
                   + '</h1>' +'<br/>'+'<b>'+'Region'+'</b>'+' : '+d.Region+'</br>'+'<b>'+'Sex'+'</b>'+' : '+d.Sex+'<br/>'+'<b>'+'Year'+'</b>'+' : '+d.Year+'<br/>'+ 
                   dimensions.map(function(dB){
                   return '<b>'+dB + ' : '+'</b>'+ d[dB]; }).join('<br />');
             }
+        
+    })
       });
+      
+      .on('panelEnter', function() {
+              
+         }   
+          
       d3.csv("NCD_RisC.csv",function(error,data){
         console.log(data);
         radviz.render(data);
