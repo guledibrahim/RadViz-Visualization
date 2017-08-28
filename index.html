@@ -29,14 +29,8 @@
                   dimensions.map(function(dB){
                   return '<b>'+dB + ' : '+'</b>'+ d[dB]; }).join('<br />');
             }
-        
-    })
       });
       
-      .on('panelEnter', function() {
-              
-         }   
-          
       d3.csv("NCD_RisC.csv",function(error,data){
         console.log(data);
         radviz.render(data);
